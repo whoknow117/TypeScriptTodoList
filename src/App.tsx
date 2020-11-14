@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {ChangeEvent, useState} from 'react';
 
 import './App.css';
 import TodoList from "./components/TodoList/TodoAffairs";
@@ -39,14 +39,27 @@ function App() {
 
 
 
+    const deleteCallBack = (taskID: string) => {
+        setTasks(tasks.filter( t => t.id !== taskID))
+    }
 
+    const addTask = (title: string) => {
 
+        const task: DefaultTasksType = {
+            id: v1(),
+            name: title,
+            isDone: false
+        }
+        setTasks([task, ...tasks])
+    }
 
     return (
         <div className="App">
             <TodoList
                 data={filteredTasks}
                 setFilter={setFilter}
+                deleteCallBack={deleteCallBack}
+                addTask={addTask}
             />
         </div>
     );
