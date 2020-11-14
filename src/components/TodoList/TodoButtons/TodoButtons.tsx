@@ -1,6 +1,7 @@
 import React from 'react';
 import classes from './TodoButtons.module.scss';
 import {AffairsPriorityType, DefaultTasksType} from "../../../App";
+import SupperButton from "../../common/SuperButton/SupperButton";
 
 
 
@@ -17,9 +18,11 @@ const TodoButtons:React.FC<TodoButtonsType> = ({setFilter}) => {
     const setActive = () => {setFilter("active")}
 
     return <div className={classes.todoWrapper}>
-        <button onClick={setAll}>all</button>
-        <button onClick={setComplete}>complete</button>
-        <button onClick={setActive}>active</button>
+
+        <SupperButton onClick={setAll}>all</SupperButton>
+        <SupperButton onClick={setComplete}>complete</SupperButton>
+        <SupperButton onClick={setActive}>active</SupperButton>
+
 
     </div>
 }

@@ -1,5 +1,9 @@
 import React, {ChangeEvent, useState} from 'react';
 import classes from './TodoInput.module.scss';
+import SupperInput from "../../common/SuperInput/SupperInput";
+import SupperButton from "../../common/SuperButton/SupperButton";
+
+
 
 
 
@@ -16,8 +20,12 @@ const TodoInput:React.FC<TodoInputType> = ({error,setError ,addTask}) => {
 
     const addAffair = () => {
 
-        if (title.trim() !== "") addTask(title.trim())
-        else setError("erro")
+        if (title.trim() !== ""){
+            addTask(title.trim())
+            setTitle("")
+        }
+
+        else setError("error")
 
     }
 
@@ -30,8 +38,10 @@ const TodoInput:React.FC<TodoInputType> = ({error,setError ,addTask}) => {
 
     return <div className={classes.todoWrapper}>
 
-        <input value={title} onChange={changeTitle } type="text"/>
-        <button onClick={addAffair}>add</button>
+        {/*<input value={title} onChange={changeTitle } type="text"/>*/}
+        <SupperInput value={title} onChange={changeTitle}/>
+        {/*<button onClick={addAffair}>add</button>*/}
+        <SupperButton onClick={addAffair}>add</SupperButton>
 
 
     </div>

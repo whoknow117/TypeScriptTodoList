@@ -1,6 +1,7 @@
 import React, {ChangeEvent} from 'react';
 import classes from './Affairs.module.scss';
 import {DefaultTasksType} from "../../../App";
+import SupperCheckbox from "../../common/SuperCheckbox/SupperCheckbox";
 
 
 
@@ -16,7 +17,8 @@ const Affairs:React.FC<PropsType> = ({changeTaskStatus, deleteCallBack, task, ..
     const changeStatus = (e: ChangeEvent<HTMLInputElement>) => {changeTaskStatus(task.id, e.currentTarget.checked)}
 
     return <div className={classes.todoWrapper}>
-        <input checked={task.isDone} type="checkbox" onChange={changeStatus} />
+        {/*<input checked={task.isDone} type="checkbox" onChange={changeStatus} />*/}
+        <SupperCheckbox checked={task.isDone} onChange={changeStatus}/>
         {task.name}
         <div className={classes.btn}>
             <button onClick={deleteTask}>x</button>
