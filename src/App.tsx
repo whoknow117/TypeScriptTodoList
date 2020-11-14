@@ -27,6 +27,7 @@ function App() {
 
     const [tasks, setTasks] = useState<Array<DefaultTasksType>>(defaultTasks);
     const [filter, setFilter] = useState<AffairsPriorityType>("all");
+    const [error, setError] = useState<string>("");
 
     const filterTasks = (filter: AffairsPriorityType): Array<DefaultTasksType> => {
         if (filter === "all") return tasks;
@@ -36,7 +37,16 @@ function App() {
     }
     const filteredTasks = filterTasks(filter);
 
+    const changeTaskStatus = (taskID: string, isDone: boolean) => {
 
+        setTasks(tasks.map( t => {
+            if(t.id === taskID) {
+                return {...t, isDone: isDone}
+            }
+            return t;
+        }))
+
+    }
 
 
     const deleteCallBack = (taskID: string) => {
@@ -60,6 +70,9 @@ function App() {
                 setFilter={setFilter}
                 deleteCallBack={deleteCallBack}
                 addTask={addTask}
+                error={error}
+                setError={setError}
+                changeTaskStatus={changeTaskStatus}
             />
         </div>
     );

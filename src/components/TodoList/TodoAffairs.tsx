@@ -6,28 +6,30 @@ import TodoButtons from "./TodoButtons/TodoButtons";
 import {AffairsPriorityType, DefaultTasksType} from "../../App";
 
 
-
 export type TodoListType = {
     data: Array<DefaultTasksType>
     setFilter: (filter: AffairsPriorityType) => void
     deleteCallBack: (taskID: string) => void
     addTask: (title: string) => void
-
+    setError: ( error: string) => void
+    error: string
+    changeTaskStatus : (taskID: string, isDone: boolean) => void
 }
 
-const TodoList:React.FC<TodoListType> = ({addTask, deleteCallBack, setFilter, data}) => {
+const TodoList: React.FC<TodoListType> = ({changeTaskStatus, error,setError ,addTask, deleteCallBack, setFilter, data}) => {
 
     return <div className={classes.todoWrapper}>
-                <TodoInput addTask={addTask}/>
-        {data.map( t => <Affairs
-        key={t.id}
-
-        task={t}
-        deleteCallBack={deleteCallBack}
+        <TodoInput setError={setError} error={error} addTask={addTask}/>
+        {data.map(t => <Affairs
+            key={t.id}
+            changeTaskStatus={changeTaskStatus}
+            task={t}
+            deleteCallBack={deleteCallBack}
         />)}
-                <TodoButtons setFilter={setFilter}/>
+        <TodoButtons setFilter={setFilter}/>
+        { error && <span>error</span>}
 
-        </div>
+    </div>
 }
 
 export default TodoList;
