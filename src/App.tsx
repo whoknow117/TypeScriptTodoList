@@ -29,6 +29,16 @@ function App() {
     const [filter, setFilter] = useState<AffairsPriorityType>("all");
     const [error, setError] = useState<string>("");
 
+    const todoListID1= v1();
+    const todoListID2 = v1();
+
+
+    const [todoLists, setTodolists] = useState([
+        {id: todoListID1, name: 'What to learn', filter: "all"},
+        {id: todoListID2, name: 'What to eat', filter: "all"},
+    ])
+
+
     const filterTasks = (filter: AffairsPriorityType): Array<DefaultTasksType> => {
         if (filter === "all") return tasks;
         if (filter === "complete") return tasks.filter( t => t.isDone === true);

@@ -2,7 +2,7 @@ import React, {ButtonHTMLAttributes, ChangeEvent, DetailedHTMLProps, InputHTMLAt
 import classes from './SupperInput.module.scss';
 
 
-type DefaultButtonPropsType =  DetailedHTMLProps<InputHTMLAttributes<HTMLInputElement>, HTMLInputElement>
+type DefaultButtonPropsType = DetailedHTMLProps<InputHTMLAttributes<HTMLInputElement>, HTMLInputElement>
 
 export type SupperInputType = DefaultButtonPropsType & {
     onChangeText?: (value: string) => void
@@ -10,17 +10,23 @@ export type SupperInputType = DefaultButtonPropsType & {
 
 }
 
-const SupperInput:React.FC<SupperInputType> = ({onChangeText
-                                                   ,error,onChange,type
+const SupperInput: React.FC<SupperInputType> = ({
+                                                    onChangeText
+                                                    , error, onChange, type
 
-                                                   , ...restProps}) => {
-
+                                                    , ...restProps
+                                                }) => {
 
 
     const onChangeCallback = (e: ChangeEvent<HTMLInputElement>) => {
         onChange
-        && onChange(e)
-        onChangeText && onChangeText(e.currentTarget.value)
+        &&
+        onChange(e);
+
+        onChangeText
+        &&
+        onChangeText(e.currentTarget.value)
+
     }
 
 

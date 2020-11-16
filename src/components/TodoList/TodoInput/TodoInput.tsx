@@ -39,7 +39,7 @@ const TodoInput:React.FC<TodoInputType> = ({error,setError ,addTask}) => {
     return <div className={classes.todoWrapper}>
 
         {/*<input value={title} onChange={changeTitle } type="text"/>*/}
-        <SupperInput value={title} onChange={changeTitle}/>
+        <SupperInput value={title}  onChange={changeTitle} onChangeText={setTitle}/>
         {/*<button onClick={addAffair}>add</button>*/}
         <SupperButton onClick={addAffair}>add</SupperButton>
 
