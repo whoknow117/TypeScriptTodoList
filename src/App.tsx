@@ -12,12 +12,7 @@ export type DefaultTasksType = {
 }
 export type AffairsPriorityType = "all" | "complete" | "active"
 
-const defaultTasks: Array<DefaultTasksType> = [
-    {id: v1(), name: "React", isDone: false},
-    {id: v1(), name: "Html", isDone: false},
-    {id: v1(), name: "Css", isDone: false},
-    {id: v1(), name: "Games", isDone: true},
-]
+
 
 export type TaskStateType = {
     [key: string]: Array<DefaultTasksType>
@@ -57,42 +52,61 @@ function App() {
 
     })
 
-    const changeTaskStatus = (taskID: string, isDone: boolean) => {
+    const changeTaskStatus = (taskID: string, isDone: boolean, todoListID: string) => {
+        const tasksForTodoList = tasks[todoListID]
+        const task: DefaultTasksType | undefined = tasksForTodoList.find( task => task.id === taskID)
+        if(task) {
+            task.isDone = isDone;
+            setTasks({...tasks})
+        }
 
-        setTasks(tasks.map( t => {
-            if(t.id === taskID) {
-                return {...t, isDone: isDone}
-            }
-            return t;
-        }))
+
+    }
+    const changeFilter = (newFilterValue: AffairsPriorityType, todoListID: string) => {
+        const todoList = todoLists.find( tl => tl.id !== todoListID);
+        if(todoList) {
+            todoList.filter = newFilterValue;
+            setTodoLists([...todoLists])
+        }
 
     }
 
-
-    const deleteCallBack = (taskID: string) => {
-        setTasks(tasks.filter( t => t.id !== taskID))
+    const deleteCallBack = (taskID: string, todoListID: string) => {
+        const tasksForTodoList = tasks[todoListID]
+        tasks[todoListID] = tasksForTodoList.filter( task => task.id !== taskID)
+        setTasks({...tasks})
     }
 
-    const addTask = (title: string) => {
+    const addTask = (title: string, todoListID:string) => {
 
         const task: DefaultTasksType = {
             id: v1(),
             name: title,
             isDone: false
         }
-        setTasks([task, ...tasks])
+        const tasksForTodoList = tasks[todoListID];
+        tasks[todoListID] = [task,...tasks[todoListID]]
+        setTasks({...tasks})
     }
 
     return (
         <div className="App">
-            <TodoList
-                data={filteredTasks}
-                setFilter={setFilter}
-                deleteCallBack={deleteCallBack}
-                addTask={addTask}
+            {todoLists.map( tl => {
 
-                changeTaskStatus={changeTaskStatus}
-            />
+                const tasksForTodoList = tasks[tl.id]
+
+                return (
+                    <TodoList
+                        tasks={tasksForTodoList}
+                        changeFilter={changeFilter}
+                        deleteCallBack={deleteCallBack}
+                        addTask={addTask}
+                        todoID={tl.id}
+                        key={tl.id}
+                        changeTaskStatus={changeTaskStatus}
+                    />
+                )
+            })}
         </div>
     );
 }
