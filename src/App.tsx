@@ -64,10 +64,30 @@ function App() {
         }
 
     }
+
+    const changeTaskTitle = (taskID: string, title: string, todoListID: string) => {
+        const todoListTasks = tasks[todoListID]
+
+        const task = todoListTasks.find( task => task.id === taskID)
+        if(task) {
+            task.name = title
+            setTasks({...tasks})
+        }
+
+    }
+
     const changeFilter = (newFilterValue: AffairsPriorityType, todoListID: string) => {
         const todoList = todoLists.find( tl => tl.id === todoListID)
         if(todoList) {
             todoList.filter = newFilterValue
+        }
+        setTodoLists([...todoLists])
+    }
+
+    const changeTodoListTitle = (newTitle: string, todoListID: string) => {
+        const todoList = todoLists.find( tl => tl.id === todoListID)
+        if(todoList) {
+            todoList.title = newTitle
         }
         setTodoLists([...todoLists])
     }
@@ -110,34 +130,38 @@ function App() {
 
         <div className="App">
             <TodoInput addItem={addTodoList}/>
-            {todoLists.map( tl => {
+            <div className="todoLists">
+                {todoLists.map( tl => {
 
-                let todoListTasks = tasks[tl.id]
-                if (tl.filter === "complete") {
-                     todoListTasks = tasks[tl.id].filter( task => task.isDone === true )
-                }
-                if (tl.filter === "active") {
-                      todoListTasks =  tasks[tl.id].filter( task => task.isDone === false)
-                }
+                    let todoListTasks = tasks[tl.id]
+                    if (tl.filter === "complete") {
+                        todoListTasks = tasks[tl.id].filter( task => task.isDone === true )
+                    }
+                    if (tl.filter === "active") {
+                        todoListTasks =  tasks[tl.id].filter( task => task.isDone === false)
+                    }
 
 
-                return (
-                  <div>
+                    return (
+                        <div>
 
-                      <TodoList
-                          todoID={tl.id}
-                          key={tl.id}
-                          title={tl.title}
-                          tasks={todoListTasks}
-                          changeFilter={changeFilter}
-                          deleteCallBack={deleteCallBack}
-                          addTask={addTask}
-                          changeTaskStatus={changeTaskStatus}
-                          removeTodoList={removeTodoList}
-                      />
-                  </div>
-                 )
-            })}
+                            <TodoList
+                                todoID={tl.id}
+                                key={tl.id}
+                                title={tl.title}
+                                tasks={todoListTasks}
+                                changeFilter={changeFilter}
+                                deleteCallBack={deleteCallBack}
+                                addTask={addTask}
+                                changeTaskStatus={changeTaskStatus}
+                                removeTodoList={removeTodoList}
+                                changeTaskTitle={changeTaskTitle}
+                                changeTodoListTitle={changeTodoListTitle}
+                            />
+                        </div>
+                    )
+                })}
+            </div>
 
         </div>
     );

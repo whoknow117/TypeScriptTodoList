@@ -3,6 +3,7 @@ body {
   width: 100%;
   height: 100vh;
   display: flex;
+  background: linear-gradient(90deg, cadetblue, #89c1e5);
   padding-top: 100px;
   justify-content: center;
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
