@@ -3,6 +3,7 @@ import React, {ChangeEvent, useState} from 'react';
 import './App.css';
 import TodoList from "./components/TodoList/TodoAffairs";
 import {v1} from "uuid";
+import TodoInput from "./components/TodoList/TodoInput/TodoInput";
 
 
 export type DefaultTasksType = {
@@ -94,11 +95,21 @@ function App() {
         tasks[todoListID] = [ newTask,...tasks[todoListID]]
         setTasks({...tasks})
     }
+    const addTodoList = (title: string) => {
+        const newTodoListID: string = v1()
+        const newTodoList: TodoListType = {
+            id: newTodoListID,
+            title: title,
+            filter: "all"
+        }
+        setTodoLists(todoLists=>[  ...todoLists,newTodoList])
+        setTasks(tasks => ({...tasks,[newTodoListID]:[]}))
+    }
 
     return (
 
         <div className="App">
-
+            <TodoInput addItem={addTodoList}/>
             {todoLists.map( tl => {
 
                 let todoListTasks = tasks[tl.id]
@@ -111,16 +122,20 @@ function App() {
 
 
                 return (
-                    <TodoList
-                        todoID={tl.id}
-                        key={tl.id}
-                        tasks={todoListTasks}
-                        changeFilter={changeFilter}
-                        deleteCallBack={deleteCallBack}
-                        addTask={addTask}
-                        changeTaskStatus={changeTaskStatus}
-                        removeTodoList={removeTodoList}
-                    />
+                  <div>
+
+                      <TodoList
+                          todoID={tl.id}
+                          key={tl.id}
+                          title={tl.title}
+                          tasks={todoListTasks}
+                          changeFilter={changeFilter}
+                          deleteCallBack={deleteCallBack}
+                          addTask={addTask}
+                          changeTaskStatus={changeTaskStatus}
+                          removeTodoList={removeTodoList}
+                      />
+                  </div>
                  )
             })}
 

@@ -13,15 +13,17 @@ export type TodoListType = {
     addTask: (title: string, todoListID: string) => void
     changeTaskStatus : (taskID: string, isDone: boolean, todoListID: string) => void
     todoID: string
+    title: string
     removeTodoList: (todoListID: string) => void
 }
 
-const TodoList: React.FC<TodoListType> = ({removeTodoList, todoID,tasks, changeTaskStatus,addTask, deleteCallBack, changeFilter }) => {
+const TodoList: React.FC<TodoListType> = ({title, removeTodoList, todoID,tasks, changeTaskStatus,addTask, deleteCallBack, changeFilter }) => {
 
-    const [error, setError] = useState<string>("");
+    const addItem = (title: string) => {addTask(title,todoID)}
 
     return <div className={classes.todoWrapper}>
-        <TodoInput removeTodoList={removeTodoList} todoID={todoID} setError={setError} error={error} addTask={addTask}/>
+        {title}
+        <TodoInput       addItem={addItem}/>
         {tasks.map(t => <Affairs
             key={t.id}
             changeTaskStatus={changeTaskStatus}
@@ -30,7 +32,7 @@ const TodoList: React.FC<TodoListType> = ({removeTodoList, todoID,tasks, changeT
             deleteCallBack={deleteCallBack}
         />)}
         <TodoButtons todoID={todoID} changeFilter={changeFilter}/>
-        { error && <span>error</span>}
+
 
     </div>
 }
