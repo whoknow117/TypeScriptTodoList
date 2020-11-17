@@ -1,11 +1,15 @@
 
 .todoWrapper {
-
+  display: flex;
   position: relative;
   .btn {
     position: absolute;
     right: 0;
     top: 0;
+  }
+  .active {
+    background: rgba(0,0,0,.1);
+    color: silver;
   }
 
 }

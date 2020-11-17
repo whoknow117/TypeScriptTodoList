@@ -14,11 +14,11 @@ export type SupperButtonType = DefaultButtonPropsType & {
 const SupperButton:React.FC<SupperButtonType> = ({red, children,...restProps}) => {
 
 
-
+    const buttonClassName =`${ red ? classes.redBtn : ""}`
 
     return <div className={classes.todoWrapper}>
 
-        <button {...restProps}>{children}</button>
+        <button className={buttonClassName} {...restProps}>{children}</button>
 
     </div>
 }

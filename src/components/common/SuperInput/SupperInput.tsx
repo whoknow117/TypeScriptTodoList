@@ -24,11 +24,13 @@ const SupperInput:React.FC<SupperInputType> = ({onChangeText
     }
 
 
+    let inputClassName = `${error ? classes.errorInput : classes.common}`
+
     return <div className={classes.todoWrapper}>
         <input
             type={"text"}
             onChange={onChangeCallback}
-
+            className={inputClassName}
             {...restProps}
         />
     </div>

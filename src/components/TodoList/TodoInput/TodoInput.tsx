@@ -8,20 +8,21 @@ import SupperButton from "../../common/SuperButton/SupperButton";
 
 
 export type TodoInputType = {
-    addTask: (title: string) => void
+    addTask: (title: string, todoListID: string) => void
     setError: (error: string) => void
-    error: string
-
+    error?: string
+    todoID: string
+    removeTodoList: (todoListID: string) => void
 }
 
-const TodoInput:React.FC<TodoInputType> = ({error,setError ,addTask}) => {
+const TodoInput:React.FC<TodoInputType> = ({removeTodoList, todoID, error,setError ,addTask}) => {
 
     const [title, setTitle] = useState<string>("")
 
     const addAffair = () => {
 
         if (title.trim() !== ""){
-            addTask(title.trim())
+            addTask(title.trim(),todoID)
             setTitle("")
         }
 
@@ -30,7 +31,7 @@ const TodoInput:React.FC<TodoInputType> = ({error,setError ,addTask}) => {
     }
 
 
-
+    const removeTodoCallback = () => {removeTodoList(todoID)};
     const changeTitle = (e: ChangeEvent<HTMLInputElement>) => {
         setError("")
         setTitle(e.currentTarget.value)
@@ -39,9 +40,10 @@ const TodoInput:React.FC<TodoInputType> = ({error,setError ,addTask}) => {
     return <div className={classes.todoWrapper}>
 
         {/*<input value={title} onChange={changeTitle } type="text"/>*/}
-        <SupperInput value={title} onChange={changeTitle}/>
+        <SupperInput error={error} value={title} onChange={changeTitle}/>
         {/*<button onClick={addAffair}>add</button>*/}
         <SupperButton onClick={addAffair}>add</SupperButton>
+        <SupperButton red onClick={removeTodoCallback}>X</SupperButton>
 
 
     </div>
