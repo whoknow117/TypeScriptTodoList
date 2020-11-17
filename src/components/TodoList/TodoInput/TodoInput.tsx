@@ -8,20 +8,21 @@ import SupperButton from "../../common/SuperButton/SupperButton";
 
 
 export type TodoInputType = {
-    addTask: (title: string) => void
+    addTask: (title: string, todoListID:string) => void
     setError: (error: string) => void
     error: string
-
+    todoID: string
+    removeTodoList: (todoListID: string) => void
 }
 
-const TodoInput:React.FC<TodoInputType> = ({error,setError ,addTask}) => {
+const TodoInput:React.FC<TodoInputType> = ({removeTodoList, todoID, error,setError ,addTask}) => {
 
     const [title, setTitle] = useState<string>("")
 
     const addAffair = () => {
 
         if (title.trim() !== ""){
-            addTask(title.trim())
+            addTask(title.trim(),todoID)
             setTitle("")
         }
 
@@ -29,6 +30,7 @@ const TodoInput:React.FC<TodoInputType> = ({error,setError ,addTask}) => {
 
     }
 
+    const deleteTodoCallback = () => {removeTodoList(todoID)}
 
 
     const changeTitle = (e: ChangeEvent<HTMLInputElement>) => {
@@ -42,6 +44,7 @@ const TodoInput:React.FC<TodoInputType> = ({error,setError ,addTask}) => {
         <SupperInput value={title} onChange={changeTitle}/>
         {/*<button onClick={addAffair}>add</button>*/}
         <SupperButton onClick={addAffair}>add</SupperButton>
+        <SupperButton onClick={deleteTodoCallback}>DELETE</SupperButton>
 
 
     </div>

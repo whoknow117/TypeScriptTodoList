@@ -7,26 +7,29 @@ import {AffairsPriorityType, DefaultTasksType} from "../../App";
 
 
 export type TodoListType = {
-    data: Array<DefaultTasksType>
-    setFilter: (filter: AffairsPriorityType) => void
-    deleteCallBack: (taskID: string) => void
-    addTask: (title: string) => void
+    tasks: Array<DefaultTasksType>
+    changeFilter: (newFilterValue: AffairsPriorityType, todoListID:string) => void
+    deleteCallBack: (taskID: string, todoListID:string) => void
+    addTask: (title: string, todoListID:string) => void
     setError: ( error: string) => void
     error: string
-    changeTaskStatus : (taskID: string, isDone: boolean) => void
+    changeTaskStatus : (taskID: string, isDone: boolean, todoListID:string) => void
+    todoID: string
+    removeTodoList:(todoListID: string) => void
 }
 
-const TodoList: React.FC<TodoListType> = ({changeTaskStatus, error,setError ,addTask, deleteCallBack, setFilter, data}) => {
+const TodoList: React.FC<TodoListType> = ({removeTodoList, changeTaskStatus, error,setError ,addTask, deleteCallBack,  tasks,changeFilter,todoID }) => {
 
     return <div className={classes.todoWrapper}>
-        <TodoInput setError={setError} error={error} addTask={addTask}/>
-        {data.map(t => <Affairs
+        <TodoInput removeTodoList={removeTodoList} todoID={todoID} setError={setError} error={error} addTask={addTask}/>
+        {tasks.map(t => <Affairs
             key={t.id}
             changeTaskStatus={changeTaskStatus}
             task={t}
+            todoID={todoID}
             deleteCallBack={deleteCallBack}
         />)}
-        <TodoButtons setFilter={setFilter}/>
+        <TodoButtons todoID={todoID} changeFilter={changeFilter}/>
         { error && <span>error</span>}
 
     </div>

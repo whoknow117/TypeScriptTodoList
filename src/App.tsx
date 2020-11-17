@@ -11,13 +11,13 @@ export type DefaultTasksType = {
     isDone: boolean
 }
 export type AffairsPriorityType = "all" | "complete" | "active"
-//
-// const defaultTasks: Array<DefaultTasksType> = [
-//     {id: v1(), name: "React", isDone: false},
-//     {id: v1(), name: "Html", isDone: false},
-//     {id: v1(), name: "Css", isDone: false},
-//     {id: v1(), name: "Games", isDone: true},
-// ]
+
+
+export type TaskStateType = {
+    [key: string] : Array<DefaultTasksType>
+
+}
+
 
 
 
@@ -28,46 +28,97 @@ function App() {
 
 
     const [error, setError] = useState<string>("");
-    const [tasks, setTasks] = useState< >( );
+
+    const todoListID1 = v1();
+    const todoListID2 = v1();
+
+    const [todoLists, setTodoLists] = useState([
+        {id: todoListID1, title: "What to learn", filter: "all"},
+        {id: todoListID2, title: "What to eat", filter: "all"},
+    ])
+
+    const [tasks, setTasks] = useState<TaskStateType>({
+        [todoListID1]: [
+            {id: v1(), name: "React", isDone: false},
+            {id: v1(), name: "Html", isDone: false},
+            {id: v1(), name: "Css", isDone: false},
+            {id: v1(), name: "Games", isDone: true},
+        ],
+        [todoListID2]: [
+            {id: v1(), name: "React", isDone: false},
+            {id: v1(), name: "Html", isDone: false},
+            {id: v1(), name: "Css", isDone: false},
+            {id: v1(), name: "Games", isDone: true},
+        ],
+    });
 
 
-    const changeTaskStatus = (taskID: string, isDone: boolean) => {
+    const changeTaskStatus = (taskID: string, isDone: boolean, todoListID: string) => {
+        const todoListTasks = tasks[todoListID]
+        const task: DefaultTasksType | undefined = todoListTasks.find( task => task.id === taskID)
+        if(task) {
+            task.isDone = isDone
+        }
+        setTasks({...tasks});
 
-        setTasks(tasks.map( t => {
-            if(t.id === taskID) {
-                return {...t, isDone: isDone}
+
+    }
+
+    const changeFilter = (newFilterValue: AffairsPriorityType, todoListID: string) => {
+            const todoList = todoLists.find( tl => tl.id === todoListID)
+            if(todoList) {
+                todoList.filter = newFilterValue
             }
-            return t;
-        }))
+            setTodoLists([...todoLists])
 
     }
 
 
-    const deleteCallBack = (taskID: string) => {
-        setTasks(tasks.filter( t => t.id !== taskID))
+    const deleteCallBack = (taskID: string, todoListID:string) => {
+        const todoListTasks = tasks[todoListID];
+        tasks[todoListID] = todoListTasks.filter( t=> t.id !== taskID)
+        setTasks({...tasks})
     }
 
-    const addTask = (title: string) => {
+    const addTask = (title: string, todoListID: string) => {
 
         const task: DefaultTasksType = {
             id: v1(),
             name: title,
             isDone: false
         }
-        setTasks([task, ...tasks])
+
+        const todoListTask = tasks[todoListID]
+        tasks[todoListID] = [task,...todoListTask]
+
+        setTasks({...tasks})
+    }
+
+    const removeTodoList = (todoListID: string) => {
+        setTodoLists(todoLists.filter( tl => tl.id !== todoListID))
     }
 
     return (
         <div className="App">
-            <TodoList
-                data={filteredTasks}
-                setFilter={setFilter}
-                deleteCallBack={deleteCallBack}
-                addTask={addTask}
-                error={error}
-                setError={setError}
-                changeTaskStatus={changeTaskStatus}
-            />
+            {todoLists.map( tl => {
+                let todoListTasks = tasks[tl.id]
+                return (
+
+                    <TodoList
+                        todoID={tl.id}
+                        key={tl.id}
+                        tasks={todoListTasks}
+                        changeFilter={changeFilter}
+                        deleteCallBack={deleteCallBack}
+                        addTask={addTask}
+                        error={error}
+                        setError={setError}
+                        changeTaskStatus={changeTaskStatus}
+                        removeTodoList={removeTodoList}
+                    />
+                )
+            })}
+
         </div>
     );
 }
