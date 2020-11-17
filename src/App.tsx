@@ -19,23 +19,43 @@ const defaultTasks: Array<DefaultTasksType> = [
     {id: v1(), name: "Games", isDone: true},
 ]
 
+export type TaskStateType = {
+    [key: string]: Array<DefaultTasksType>
+}
 
-
+export type TodoListType = {
+    id: string
+    title: string
+    filter: AffairsPriorityType
+}
 
 
 function App() {
 
-    const [tasks, setTasks] = useState<Array<DefaultTasksType>>(defaultTasks);
-    const [filter, setFilter] = useState<AffairsPriorityType>("all");
-    const [error, setError] = useState<string>("");
 
-    const filterTasks = (filter: AffairsPriorityType): Array<DefaultTasksType> => {
-        if (filter === "all") return tasks;
-        if (filter === "complete") return tasks.filter( t => t.isDone === true);
-        if (filter === "active") return tasks.filter( t => t.isDone === false);
-        return tasks;
-    }
-    const filteredTasks = filterTasks(filter);
+
+    const todoListID1 = v1();
+    const todoListID2 = v1();
+
+    const [todoLists, setTodoLists] = useState<Array<TodoListType>>([
+        {id:todoListID1, title: "What to learn", filter: "all"},
+        {id:todoListID2, title: "What to eat", filter: "all"},
+    ])
+    const [tasks, setTasks] = useState<TaskStateType>({
+        [todoListID1]: [
+            {id: v1(), name: "React", isDone: false},
+            {id: v1(), name: "Html", isDone: false},
+            {id: v1(), name: "Css", isDone: false},
+            {id: v1(), name: "Games", isDone: true},
+        ],
+        [todoListID2]: [
+            {id: v1(), name: "React", isDone: false},
+            {id: v1(), name: "Html", isDone: false},
+            {id: v1(), name: "Css", isDone: false},
+            {id: v1(), name: "Games", isDone: true},
+        ],
+
+    })
 
     const changeTaskStatus = (taskID: string, isDone: boolean) => {
 
@@ -70,8 +90,7 @@ function App() {
                 setFilter={setFilter}
                 deleteCallBack={deleteCallBack}
                 addTask={addTask}
-                error={error}
-                setError={setError}
+
                 changeTaskStatus={changeTaskStatus}
             />
         </div>
