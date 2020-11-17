@@ -39,12 +39,7 @@ function App() {
 
     const changeTaskStatus = (taskID: string, isDone: boolean) => {
 
-        setTasks(tasks.map( t => {
-            if(t.id === taskID) {
-                return {...t, isDone: isDone}
-            }
-            return t;
-        }))
+
 
     }
 
