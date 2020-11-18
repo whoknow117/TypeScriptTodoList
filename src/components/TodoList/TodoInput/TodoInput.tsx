@@ -21,7 +21,7 @@ const TodoInput: React.FC<TodoInputType> = ({children, addItem}) => {
         if (title.trim() !== "") {
             addItem(title.trim())
             setTitle("")
-        } else setError("error")
+        } else setError("Enter something")
 
     }
 

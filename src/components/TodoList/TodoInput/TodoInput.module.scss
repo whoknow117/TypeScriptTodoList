@@ -27,14 +27,16 @@
    }
   .span {
     background: #fff;
+    margin-top: 10px;
+    background: transparent;
     transition: .3s ease-in-out;
 
 
   }
   .errorSpan {
-    background: red;
-    transition: .3s ease-in-out;
 
+    transition: .3s ease-in-out;
+    color: tomato;
 
 
   }
