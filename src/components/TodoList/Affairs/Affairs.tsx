@@ -14,15 +14,16 @@ export type PropsType = {
     changeTaskStatus : (taskID: string, isDone: boolean, todoListID: string) => void
     todoID: string
     changeTaskTitle:(taskID: string, title: string, todoListID: string) => void
-
+    taskID: string
 }
 
-const Affairs:React.FC<PropsType> = ({ changeTaskTitle,todoID, changeTaskStatus, deleteCallBack, task, ...restProps}) => {
+const
+    Affairs:React.FC<PropsType> = ({taskID, changeTaskTitle,todoID, changeTaskStatus, deleteCallBack, task, ...restProps}) => {
 
-    const deleteTask = () => {deleteCallBack(task.id,todoID) }
+
     const changeStatus = (e: ChangeEvent<HTMLInputElement>) => {changeTaskStatus(task.id, e.currentTarget.checked,todoID)}
 
-
+        const deleteTask = () => {deleteCallBack(task.id,todoID) }
     const  changeTitle = (newValue:string) => {changeTaskTitle(task.id,newValue, todoID)}
 
     return <div className={classes.todoWrapper}>
@@ -31,18 +32,24 @@ const Affairs:React.FC<PropsType> = ({ changeTaskTitle,todoID, changeTaskStatus,
             <SupperCheckbox checked={task.isDone} onChange={changeStatus}/>
         </span>
         <p className={classes.title}>
-            <EditableSpan doneMode={task.isDone} changeValue={changeTitle} title={task.name}/>
+            <EditableSpan
+                          task={task}
+                          todoID={todoID}
+                          deleteCallBack={deleteCallBack}
+                          doneMode={task.isDone}
+                          changeValue={changeTitle}
+                          title={task.name}/>
         </p>
-        <div className={classes.refactorButton}>
-            <SupperButton red onClick={deleteTask}> </SupperButton>
+        {/*<div className={classes.refactorButton}>*/}
+        {/*    <SupperButton red onClick={deleteTask}> </SupperButton>*/}
 
-            <CreateIcon/>
-        </div>
-        <div className={classes.deleteButton}>
-            <SupperButton red onClick={deleteTask}> </SupperButton>
+        {/*    <CreateIcon/>*/}
+        {/*</div>*/}
+        {/*<div className={classes.deleteButton}>*/}
+        {/*    <SupperButton red onClick={deleteTask}> </SupperButton>*/}
 
-            <DeleteForeverIcon/>
-        </div>
+        {/*    <DeleteForeverIcon/>*/}
+        {/*</div>*/}
     </div>
 }
 

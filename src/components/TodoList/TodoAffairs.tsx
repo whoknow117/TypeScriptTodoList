@@ -37,7 +37,7 @@ const TodoList: React.FC<TodoListType> = ({filter,changeTaskTitle, title, remove
             {tasks.map(t => <Affairs
                 changeTaskTitle={changeTaskTitle}
                 key={t.id}
-
+                taskID={t.id}
                 changeTaskStatus={changeTaskStatus}
                 task={t}
                 todoID={todoID}
