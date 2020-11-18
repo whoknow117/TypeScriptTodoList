@@ -1,6 +1,16 @@
-
+@import "src/variables/variables";
 
 .todoWrapper {
-  border: 1px solid #fff;
-  width: 400px;
+  position: relative;
+  padding: 20px;
+  width: 600px;
+  background: $backgroundTodoList;
+  .title {
+    background: $backgroundTodoList;
+    color: $titleTextColor;
+    margin-bottom: 10px;
+  }
+  .input {
+    margin-bottom: 10px;
+  }
 }

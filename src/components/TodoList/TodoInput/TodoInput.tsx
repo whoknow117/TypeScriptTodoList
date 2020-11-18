@@ -4,16 +4,14 @@ import SupperInput from "../../common/SuperInput/SupperInput";
 import SupperButton from "../../common/SuperButton/SupperButton";
 
 
-
-
 export type TodoInputType = {
 
-    addItem: (title: string ) => void
+    addItem: (title: string) => void
 
 
 }
 
-const TodoInput: React.FC<TodoInputType> = ({   addItem}) => {
+const TodoInput: React.FC<TodoInputType> = ({children, addItem}) => {
 
     const [title, setTitle] = useState<string>("")
     const [error, setError] = useState<string>("")
@@ -21,12 +19,11 @@ const TodoInput: React.FC<TodoInputType> = ({   addItem}) => {
     const addItm = () => {
 
         if (title.trim() !== "") {
-            addItem(title.trim() )
+            addItem(title.trim())
             setTitle("")
         } else setError("error")
 
     }
-
 
 
     const changeTitle = (e: ChangeEvent<HTMLInputElement>) => {
@@ -37,10 +34,14 @@ const TodoInput: React.FC<TodoInputType> = ({   addItem}) => {
     return <div className={classes.todoWrapper}>
 
 
-        <SupperInput error={error} value={title} onChange={changeTitle}/>
-        <SupperButton onClick={addItm}>add</SupperButton>
-        <SupperButton red  >X</SupperButton>
-        {error ? <span>error</span> : ""}
+        <div className={classes.form}>
+            <SupperInput error={error} value={title} onChange={changeTitle}/>
+            <div className={classes.btn}>
+                <SupperButton onClick={addItm}>{children}</SupperButton>
+            </div>
+
+        </div>
+        <span className={`${classes.span} ${error && classes.errorSpan}`}>{error}</span>
 
 
     </div>

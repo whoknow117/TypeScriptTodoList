@@ -1,6 +1,40 @@
 
 
 .todoWrapper {
+  width: 100%;
+  max-width: 600px;
+  background: rgba(255,255,255,.1);
   display: flex;
+  flex-direction: column;
+   .form {
+    display: flex;
+     height: 36px;
+    .btn {
+      height: 100%;
+      width: 20%;
+      position: relative;
 
+      button {
+        width: 100%;
+        display: block;
+        outline: none;
+        border: none;
+        font-size: 1rem;
+
+      }
+    }
+   }
+  .span {
+    background: #fff;
+    transition: .3s ease-in-out;
+
+
+  }
+  .errorSpan {
+    background: red;
+    transition: .3s ease-in-out;
+
+
+
+  }
 }

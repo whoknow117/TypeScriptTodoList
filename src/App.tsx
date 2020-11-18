@@ -129,7 +129,9 @@ function App() {
     return (
 
         <div className="App">
-            <TodoInput addItem={addTodoList}/>
+            <div className='createTodo'>
+                <TodoInput addItem={addTodoList}>addTodo</TodoInput>
+            </div>
             <div className="todoLists">
                 {todoLists.map( tl => {
 

@@ -11,21 +11,27 @@ export type TodoListType = {
     changeFilter: (newFilterValue: AffairsPriorityType, todoListID: string) => void
     deleteCallBack: (taskID: string, todoListID: string) => void
     addTask: (title: string, todoListID: string) => void
-    changeTaskStatus : (taskID: string, isDone: boolean, todoListID: string) => void
+    changeTaskStatus: (taskID: string, isDone: boolean, todoListID: string) => void
     todoID: string
     title: string
-    changeTaskTitle:(taskID: string, title: string, todoListID: string) => void
+    changeTaskTitle: (taskID: string, title: string, todoListID: string) => void
     removeTodoList: (todoListID: string) => void
-    changeTodoListTitle:(newTitle:string, todoListID:string) => void
+    changeTodoListTitle: (newTitle: string, todoListID: string) => void
 }
 
-const TodoList: React.FC<TodoListType> = ({changeTaskTitle, title, removeTodoList, todoID,tasks, changeTaskStatus,addTask, deleteCallBack, changeFilter }) => {
+const TodoList: React.FC<TodoListType> = ({changeTaskTitle, title, removeTodoList, todoID, tasks, changeTaskStatus, addTask, deleteCallBack, changeFilter}) => {
 
-    const addItem = (title: string) => {addTask(title,todoID)}
+    const addItem = (title: string) => {
+        addTask(title, todoID)
+    }
 
     return <div className={classes.todoWrapper}>
-        <span>{title}</span>
-        <TodoInput  addItem={addItem}/>
+        <h3 className={classes.title}>{title}</h3>
+
+        <div className={classes.input}>
+            <TodoInput addItem={addItem}>addTask</TodoInput>
+        </div>
+
         {tasks.map(t => <Affairs
             changeTaskTitle={changeTaskTitle}
             key={t.id}

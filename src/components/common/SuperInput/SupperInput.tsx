@@ -24,7 +24,7 @@ const SupperInput:React.FC<SupperInputType> = ({onChangeText
     }
 
 
-    let inputClassName = `${error ? classes.errorInput : classes.common}`
+    let inputClassName = `${classes.common} ${error && classes.errorInput}`
 
     return <div className={classes.todoWrapper}>
         <input

@@ -21,7 +21,10 @@ const EditableSpan:React.FC<EditableSpanType>= ({changeValue, title}) => {
         setTitleValue( e.currentTarget.value)
     }
 
-    return ( editMode ? <input onChange={changeTitle} value={titleValue} onBlur={deActivatedEditMode} autoFocus={true} type="text"/> : <span onDoubleClick={activatedEditMode}>{title}</span>
+    return ( editMode ? <input onChange={changeTitle}
+                               value={titleValue}
+                               onBlur={deActivatedEditMode}
+                               autoFocus={true} type="text"/> : <span onDoubleClick={activatedEditMode}>{title}</span>
 
     )
 }

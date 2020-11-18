@@ -1,12 +1,24 @@
 
 
-.errorInput {
-  background: rgba(235, 58, 52, 0.1);
-  border: none;
-  outline: none ;
+
+
+
+.todoWrapper {
+  width: 80%;
+  position: relative;
+  height: 100%;
+  .common {
+    border: none;
+    outline: none;
+    background: rgba(0,0,0,.1);
+    width: 100%;
+    height: 100%;
+  }
+  .errorInput {
+    background: rgba(235, 58, 52, 0.5);
+    border: none;
+    outline: none ;
+  }
+
 }
-.common {
-  border: none;
-  outline: none;
-  background: rgba(0,0,0,.1);
-}
+
