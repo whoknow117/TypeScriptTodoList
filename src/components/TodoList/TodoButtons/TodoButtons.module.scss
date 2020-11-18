@@ -2,4 +2,12 @@
 
 .todoWrapper {
   display: flex;
+  button {
+    margin-right: 1px;
+    padding: 6px 20px;
+    .activeBtn {
+      background: #000;
+    }
+  }
+
 }

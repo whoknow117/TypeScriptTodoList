@@ -16,10 +16,11 @@ export type TodoListType = {
     title: string
     changeTaskTitle: (taskID: string, title: string, todoListID: string) => void
     removeTodoList: (todoListID: string) => void
+    filter:AffairsPriorityType
     changeTodoListTitle: (newTitle: string, todoListID: string) => void
 }
 
-const TodoList: React.FC<TodoListType> = ({changeTaskTitle, title, removeTodoList, todoID, tasks, changeTaskStatus, addTask, deleteCallBack, changeFilter}) => {
+const TodoList: React.FC<TodoListType> = ({filter,changeTaskTitle, title, removeTodoList, todoID, tasks, changeTaskStatus, addTask, deleteCallBack, changeFilter}) => {
 
     const addItem = (title: string) => {
         addTask(title, todoID)
@@ -32,15 +33,18 @@ const TodoList: React.FC<TodoListType> = ({changeTaskTitle, title, removeTodoLis
             <TodoInput addItem={addItem}>addTask</TodoInput>
         </div>
 
-        {tasks.map(t => <Affairs
-            changeTaskTitle={changeTaskTitle}
-            key={t.id}
-            changeTaskStatus={changeTaskStatus}
-            task={t}
-            todoID={todoID}
-            deleteCallBack={deleteCallBack}
-        />)}
-        <TodoButtons todoID={todoID} changeFilter={changeFilter}/>
+        <div className={classes.tasks}>
+            {tasks.map(t => <Affairs
+                changeTaskTitle={changeTaskTitle}
+                key={t.id}
+
+                changeTaskStatus={changeTaskStatus}
+                task={t}
+                todoID={todoID}
+                deleteCallBack={deleteCallBack}
+            />)}
+        </div>
+        <TodoButtons  filter={filter} todoID={todoID} changeFilter={changeFilter}/>
 
 
     </div>

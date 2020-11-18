@@ -5,12 +5,20 @@
   padding: 20px;
   width: 600px;
   background: $backgroundTodoList;
+  .active {
+    background: #000;
+  }
+  .tasks {
+    margin-bottom: 20px;
+    margin-top: 30px;
+  }
   .title {
     background: $backgroundTodoList;
     color: $titleTextColor;
     margin-bottom: 10px;
   }
   .input {
+
     margin-bottom: 10px;
   }
 }

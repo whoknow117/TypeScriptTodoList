@@ -151,6 +151,7 @@ function App() {
                                 todoID={tl.id}
                                 key={tl.id}
                                 title={tl.title}
+                                filter={tl.filter}
                                 tasks={todoListTasks}
                                 changeFilter={changeFilter}
                                 deleteCallBack={deleteCallBack}

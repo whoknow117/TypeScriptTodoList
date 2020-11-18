@@ -2,11 +2,17 @@
 
 .todoWrapper {
   height: 100%;
+
   .redBtn {
-    background: red;
-
+    background: #9d8a8a;
+    width: 20px;
+    height: 20px;
     border-radius: 50%;
-
+    outline: none;
+    cursor: pointer;
+    border: none;
+    margin-top: 4px;
+    color: #fff;
   }
   .common {
     height: 100%;
@@ -16,5 +22,16 @@
     color: #fff;
     border: none;
     outline: none;
+    cursor: pointer;
+    transition: .1s ease-in-out;
+    &:hover {
+
+
+    }
+
+
+  }
+  .activeBtn {
+    background: #bc7757;
   }
 }

@@ -8,9 +8,10 @@ import SupperButton from "../../common/SuperButton/SupperButton";
 export type TodoButtonsType = {
     changeFilter:(filter: AffairsPriorityType, todoListID:string) => void
     todoID: string
+    filter: AffairsPriorityType
 }
 
-const TodoButtons:React.FC<TodoButtonsType> = ({todoID, changeFilter}) => {
+const TodoButtons:React.FC<TodoButtonsType> = ({filter, todoID, changeFilter}) => {
 
 
 
@@ -20,9 +21,9 @@ const TodoButtons:React.FC<TodoButtonsType> = ({todoID, changeFilter}) => {
 
     return <div className={classes.todoWrapper}>
 
-        <SupperButton onClick={setAll}>all</SupperButton>
-        <SupperButton onClick={setComplete}>complete</SupperButton>
-        <SupperButton onClick={setActive}>active</SupperButton>
+        <SupperButton filter={filter === 'all'} onClick={setAll}>all</SupperButton>
+        <SupperButton filter={filter === 'complete'} onClick={setComplete}>complete</SupperButton>
+        <SupperButton filter={filter === 'active'} onClick={setActive}>active</SupperButton>
 
 
     </div>
