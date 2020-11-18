@@ -35,7 +35,7 @@ const TodoInput: React.FC<TodoInputType> = ({children, addItem}) => {
 
 
         <div className={classes.form}>
-            <SupperInput error={error} value={title} onChange={changeTitle}/>
+            <SupperInput onEnter={addItm} error={error} value={title} onChange={changeTitle}/>
             <div className={classes.btn}>
                 <SupperButton onClick={addItm}>{children}</SupperButton>
             </div>

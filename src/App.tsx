@@ -34,8 +34,8 @@ function App() {
     const todoListID2 = v1();
 
     const [todoLists, setTodoLists] = useState<Array<TodoListType>>([
-        {id: todoListID1, title: "What to learn", filter: "all"},
-        {id: todoListID2, title: "What to eat", filter: "all"},
+        {id: todoListID1, title: "This is just example, get the name your own TodoList higher/Введите выше название своего Списка Задач", filter: "all"},
+
     ])
 
     const [tasks, setTasks] = useState<TaskStateType>({
@@ -45,12 +45,7 @@ function App() {
             {id: v1(), name: "Css", isDone: false},
             {id: v1(), name: "Games", isDone: true},
         ],
-        [todoListID2] : [
-            {id: v1(), name: "React", isDone: false},
-            {id: v1(), name: "Html", isDone: false},
-            {id: v1(), name: "Css", isDone: false},
-            {id: v1(), name: "Games", isDone: true},
-        ],
+
     })
 
 

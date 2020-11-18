@@ -10,15 +10,25 @@
   }
   .tasks {
     margin-bottom: 20px;
-    margin-top: 30px;
+    margin-top: 20px;
   }
   .title {
     background: $backgroundTodoList;
     color: $titleTextColor;
-    margin-bottom: 10px;
+    margin-bottom: 20px;
   }
   .input {
 
-    margin-bottom: 10px;
+
+  }
+  .infoBlock {
+
+    margin-top: 14px;
+    color: #7c7c7c;
+    font-size: 12px;
+
+    .info {
+      margin-right: 10px;
+    }
   }
 }

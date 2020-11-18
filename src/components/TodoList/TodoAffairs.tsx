@@ -25,6 +25,10 @@ const TodoList: React.FC<TodoListType> = ({filter,changeTaskTitle, title, remove
     const addItem = (title: string) => {
         addTask(title, todoID)
     }
+    let activeTasks = tasks.filter(t => t.isDone === false);
+    let doneTasks = tasks.filter(t=> t.isDone === true);
+
+
 
     return <div className={classes.todoWrapper}>
         <h3 className={classes.title}>{title}</h3>
@@ -45,6 +49,14 @@ const TodoList: React.FC<TodoListType> = ({filter,changeTaskTitle, title, remove
             />)}
         </div>
         <TodoButtons  filter={filter} todoID={todoID} changeFilter={changeFilter}/>
+       <div className={classes.infoBlock}>
+            <span className={classes.info}>
+            tasks todo: {activeTasks.length}
+        </span>
+           <span className={classes.info}>
+            done t  asks: {doneTasks.length}
+        </span>
+       </div>
 
 
     </div>

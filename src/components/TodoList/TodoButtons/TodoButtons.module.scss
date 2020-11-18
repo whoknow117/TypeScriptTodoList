@@ -1,4 +1,4 @@
-
+@import "src/variables/variables";
 
 .todoWrapper {
   display: flex;
@@ -6,7 +6,7 @@
     margin-right: 1px;
     padding: 6px 20px;
     .activeBtn {
-      background: #000;
+      background: #fff;
     }
   }
 

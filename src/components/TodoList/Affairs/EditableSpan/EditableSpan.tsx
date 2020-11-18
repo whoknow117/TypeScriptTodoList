@@ -1,4 +1,4 @@
-import React, { ChangeEvent, useState } from "react";
+import React, {KeyboardEvent, ChangeEvent, useState } from "react";
 import  classes from './EditablSpan.module.scss';
 import SupperButton from "../../../common/SuperButton/SupperButton";
 import CreateIcon from "@material-ui/icons/Create";
@@ -31,18 +31,27 @@ const EditableSpan:React.FC<EditableSpanType>= ({task,deleteCallBack,todoID,done
         setTitleValue( e.currentTarget.value)
     }
 
+    const deactivateEditM = (e: KeyboardEvent<HTMLInputElement>) => {
+
+
+        if(e.key === "Enter"){
+            deActivatedEditMode()
+        }
+
+
+    }
 
     return ( <div className={classes.wrapper}>
 
             { editMode ? <input onChange={changeTitle}
                                 className={classes.input}
                                 value={titleValue}
+                                onKeyPress={deactivateEditM }
                                 onBlur={deActivatedEditMode}
                                 autoFocus={true} type="text"/> :
                 <span className={`${classes.common} ${ doneMode ? classes.done : ""}`} onDoubleClick={activatedEditMode}>{title}</span>}
             <div className={classes.refactorButton}>
                 <SupperButton onClick={activatedEditMode}/>
-
                 <CreateIcon/>
             </div>
             <div className={classes.deleteButton}>
