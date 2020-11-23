@@ -13,9 +13,23 @@
     margin-top: 20px;
   }
   .title {
+    height: 40px;
+    align-items: center;
     background: $backgroundTodoList;
     color: $titleTextColor;
     margin-bottom: 20px;
+    position: relative;
+    display: flex;
+    .span {
+      width: 100%;
+    }
+    button {
+      display: block;
+      right: 0;
+      height: 100%;
+      top: 0;
+      padding: 0 20px;
+    }
   }
   .input {
 

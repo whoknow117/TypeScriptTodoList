@@ -11,46 +11,50 @@ import CreateIcon from '@material-ui/icons/Create';
 export type PropsType = {
     task: DefaultTasksType
     deleteCallBack: (taskID: string, todoListID: string) => void
-    changeTaskStatus : (taskID: string, isDone: boolean, todoListID: string) => void
+    changeTaskStatus: (taskID: string, isDone: boolean, todoListID: string) => void
     todoID: string
-    changeTaskTitle:(taskID: string, title: string, todoListID: string) => void
+    changeTaskTitle: (taskID: string, title: string, todoListID: string) => void
     taskID: string
 }
 
 const
-    Affairs:React.FC<PropsType> = ({taskID, changeTaskTitle,todoID, changeTaskStatus, deleteCallBack, task, ...restProps}) => {
+    Affairs: React.FC<PropsType> = ({taskID, changeTaskTitle, todoID, changeTaskStatus, deleteCallBack, task, ...restProps}) => {
 
 
-    const changeStatus = (e: ChangeEvent<HTMLInputElement>) => {changeTaskStatus(task.id, e.currentTarget.checked,todoID)}
+        const changeStatus = (e: ChangeEvent<HTMLInputElement>) => {
+            changeTaskStatus(task.id, e.currentTarget.checked, todoID)
+        }
 
-        const deleteTask = () => {deleteCallBack(task.id,todoID) }
-    const  changeTitle = (newValue:string) => {changeTaskTitle(task.id,newValue, todoID)}
+        const deleteTask = () => {
+            deleteCallBack(task.id, todoID)
+        }
+        const changeTaskTitleCallback = (newValue: string) => {
+            changeTaskTitle(task.id, newValue, todoID)
+        }
 
-    return <div className={classes.todoWrapper}>
+        return <div className={classes.todoWrapper}>
 
         <span className={classes.checkbox}>
             <SupperCheckbox checked={task.isDone} onChange={changeStatus}/>
         </span>
-        <p className={classes.title}>
-            <EditableSpan
-                          task={task}
-                          todoID={todoID}
-                          deleteCallBack={deleteCallBack}
-                          doneMode={task.isDone}
-                          changeValue={changeTitle}
-                          title={task.name}/>
-        </p>
-        {/*<div className={classes.refactorButton}>*/}
-        {/*    <SupperButton red onClick={deleteTask}> </SupperButton>*/}
+            <p className={`${classes.title} ${task.isDone ? classes.done : ""}`}>
+                <EditableSpan
+                    modeOn
+                    changeValue={changeTaskTitleCallback}
+                    title={task.name}/>
 
-        {/*    <CreateIcon/>*/}
-        {/*</div>*/}
-        {/*<div className={classes.deleteButton}>*/}
-        {/*    <SupperButton red onClick={deleteTask}> </SupperButton>*/}
+            </p>
+            {/*<div className={classes.refactorButton}>*/}
+            {/*    <SupperButton red onClick={deleteTask}> </SupperButton>*/}
 
-        {/*    <DeleteForeverIcon/>*/}
-        {/*</div>*/}
-    </div>
-}
+            {/*    <CreateIcon/>*/}
+            {/*</div>*/}
+            <div className={classes.deleteButton}>
+                <SupperButton red onClick={deleteTask}> </SupperButton>
+
+                <DeleteForeverIcon/>
+            </div>
+        </div>
+    }
 
 export default Affairs;

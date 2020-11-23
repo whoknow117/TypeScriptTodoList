@@ -34,7 +34,7 @@ function App() {
     const todoListID2 = v1();
 
     const [todoLists, setTodoLists] = useState<Array<TodoListType>>([
-        {id: todoListID1, title: "This is just example, get the name your own TodoList higher/Введите выше название своего Списка Задач", filter: "all"},
+        {id: todoListID1, title: "Обычный список задач", filter: "all"},
 
     ])
 
@@ -120,6 +120,14 @@ function App() {
         setTodoLists(todoLists=>[  ...todoLists,newTodoList])
         setTasks(tasks => ({...tasks,[newTodoListID]:[]}))
     }
+    const changetodoListTitle = (title:string, todoListID:string) => {
+        const todoList = todoLists.find( tl => tl.id === todoListID)
+        if (todoList) {
+            todoList.title = title;
+            setTodoLists([...todoLists])
+        }
+
+    }
 
     return (
 
@@ -153,6 +161,7 @@ function App() {
                                 addTask={addTask}
                                 changeTaskStatus={changeTaskStatus}
                                 removeTodoList={removeTodoList}
+                                changetodoListTitle={changetodoListTitle}
                                 changeTaskTitle={changeTaskTitle}
                                 changeTodoListTitle={changeTodoListTitle}
                             />

@@ -6,6 +6,7 @@ import TodoButtons from "./TodoButtons/TodoButtons";
 import {AffairsPriorityType, DefaultTasksType} from "../../App";
 import SupperInput from "../common/SuperInput/SupperInput";
 import SupperButton from "../common/SuperButton/SupperButton";
+import EditableSpan from "./Affairs/EditableSpan/EditableSpan";
 
 
 export type TodoListType = {
@@ -18,23 +19,36 @@ export type TodoListType = {
     title: string
     changeTaskTitle: (taskID: string, title: string, todoListID: string) => void
     removeTodoList: (todoListID: string) => void
-    filter:AffairsPriorityType
+    filter: AffairsPriorityType
     changeTodoListTitle: (newTitle: string, todoListID: string) => void
+    changetodoListTitle: (title: string, todoListID: string) => void
 }
 
-const TodoList: React.FC<TodoListType> = ({filter,changeTaskTitle, title, removeTodoList, todoID, tasks, changeTaskStatus, addTask, deleteCallBack, changeFilter}) => {
+const TodoList: React.FC<TodoListType> = ({changetodoListTitle, filter, changeTaskTitle, title, removeTodoList, todoID, tasks, changeTaskStatus, addTask, deleteCallBack, changeFilter}) => {
 
     const addItem = (title: string) => {
         addTask(title, todoID)
     }
     let activeTasks = tasks.filter(t => t.isDone === false);
-    let doneTasks = tasks.filter(t=> t.isDone === true);
+    let doneTasks = tasks.filter(t => t.isDone === true);
 
-    const removeTodoCallback = () => {removeTodoList(todoID)}
+    const removeTodoCallback = () => {
+        removeTodoList(todoID)
+    }
+    const changeTodoListTitleCallback = (title: string) => {
+        changetodoListTitle(title, todoID)
+    }
 
     return <div className={classes.todoWrapper}>
-        <h3 className={classes.title}>{title}</h3>
-        <SupperButton  onClick={removeTodoCallback}>X</SupperButton>
+        <div className={classes.title}>
+           <div className={classes.span}>
+               <EditableSpan
+
+                   changeValue={changeTodoListTitleCallback}
+                   title={title}/>
+           </div>
+            <SupperButton onClick={removeTodoCallback}>X</SupperButton>
+        </div>
 
         <div className={classes.input}>
             <TodoInput addItem={addItem}>addTask</TodoInput>
@@ -51,15 +65,15 @@ const TodoList: React.FC<TodoListType> = ({filter,changeTaskTitle, title, remove
                 deleteCallBack={deleteCallBack}
             />)}
         </div>
-        <TodoButtons  filter={filter} todoID={todoID} changeFilter={changeFilter}/>
-       <div className={classes.infoBlock}>
+        <TodoButtons filter={filter} todoID={todoID} changeFilter={changeFilter}/>
+        <div className={classes.infoBlock}>
             <span className={classes.info}>
             tasks todo: {activeTasks.length}
         </span>
-           <span className={classes.info}>
+            <span className={classes.info}>
             done tasks: {doneTasks.length}
         </span>
-       </div>
+        </div>
 
 
     </div>
