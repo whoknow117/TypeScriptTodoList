@@ -12,15 +12,14 @@ export type SupperInputType = DefaultButtonPropsType & {
 }
 
 const SupperInput:React.FC<SupperInputType> = ({onEnter,onKeyPress, onChangeText
-                                                   ,error,onChange,type
+                                                   ,error,onChange, type
 
                                                    , ...restProps}) => {
 
 
 
     const onChangeCallback = (e: ChangeEvent<HTMLInputElement>) => {
-        onChange
-        && onChange(e)
+    onChange && onChange(e)
         onChangeText && onChangeText(e.currentTarget.value)
     }
     const onKeyPressCallback = (e:KeyboardEvent<HTMLInputElement>) => {

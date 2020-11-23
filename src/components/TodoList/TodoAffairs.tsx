@@ -4,6 +4,8 @@ import TodoInput from "./TodoInput/TodoInput";
 import Affairs from "./Affairs/Affairs";
 import TodoButtons from "./TodoButtons/TodoButtons";
 import {AffairsPriorityType, DefaultTasksType} from "../../App";
+import SupperInput from "../common/SuperInput/SupperInput";
+import SupperButton from "../common/SuperButton/SupperButton";
 
 
 export type TodoListType = {
@@ -28,10 +30,11 @@ const TodoList: React.FC<TodoListType> = ({filter,changeTaskTitle, title, remove
     let activeTasks = tasks.filter(t => t.isDone === false);
     let doneTasks = tasks.filter(t=> t.isDone === true);
 
-
+    const removeTodoCallback = () => {removeTodoList(todoID)}
 
     return <div className={classes.todoWrapper}>
         <h3 className={classes.title}>{title}</h3>
+        <SupperButton  onClick={removeTodoCallback}>X</SupperButton>
 
         <div className={classes.input}>
             <TodoInput addItem={addItem}>addTask</TodoInput>
@@ -54,7 +57,7 @@ const TodoList: React.FC<TodoListType> = ({filter,changeTaskTitle, title, remove
             tasks todo: {activeTasks.length}
         </span>
            <span className={classes.info}>
-            done t  asks: {doneTasks.length}
+            done tasks: {doneTasks.length}
         </span>
        </div>
 
