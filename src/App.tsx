@@ -120,14 +120,7 @@ function App() {
         setTodoLists(todoLists=>[  ...todoLists,newTodoList])
         setTasks(tasks => ({...tasks,[newTodoListID]:[]}))
     }
-    const changetodoListTitle = (title:string, todoListID:string) => {
-        const todoList = todoLists.find( tl => tl.id === todoListID)
-        if (todoList) {
-            todoList.title = title;
-            setTodoLists([...todoLists])
-        }
-
-    }
+    
 
     return (
 
@@ -161,7 +154,7 @@ function App() {
                                 addTask={addTask}
                                 changeTaskStatus={changeTaskStatus}
                                 removeTodoList={removeTodoList}
-                                changetodoListTitle={changetodoListTitle}
+
                                 changeTaskTitle={changeTaskTitle}
                                 changeTodoListTitle={changeTodoListTitle}
                             />

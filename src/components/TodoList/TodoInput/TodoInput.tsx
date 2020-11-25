@@ -1,7 +1,10 @@
-import React, {ChangeEvent, useState} from 'react';
+import React, {ChangeEvent, useState, KeyboardEvent} from 'react';
 import classes from './TodoInput.module.scss';
 import SupperInput from "../../common/SuperInput/SupperInput";
 import SupperButton from "../../common/SuperButton/SupperButton";
+import {Button, IconButton} from "@material-ui/core";
+import {TextField} from "@material-ui/core";
+import {AddBox} from "@material-ui/icons";
 
 
 export type TodoInputType = {
@@ -24,6 +27,12 @@ const TodoInput: React.FC<TodoInputType> = ({children, addItem}) => {
         } else setError("Enter something")
 
     }
+    const onKeyPressHandler = (e: KeyboardEvent<HTMLInputElement>) => {
+        setError("")
+        if(e.key === "Enter") {
+            addItm()
+        }
+    }
 
 
     const changeTitle = (e: ChangeEvent<HTMLInputElement>) => {
@@ -35,10 +44,18 @@ const TodoInput: React.FC<TodoInputType> = ({children, addItem}) => {
 
 
         <div className={classes.form}>
-            <SupperInput onEnter={addItm} error={error} value={title} onChange={changeTitle}/>
-            <div className={classes.btn}>
-                <SupperButton onClick={addItm}>{children}</SupperButton>
-            </div>
+            <TextField variant={"outlined"}
+                       onKeyPress={onKeyPressHandler}
+                       value={title}
+                       label="title"
+                       helperText={error}
+                       onChange={changeTitle}
+            />
+            <IconButton onClick={addItm}>
+                <AddBox/>
+            </IconButton>
+                {/*<Button variant="contained" color={"primary"}  > </Button>*/}
+
 
         </div>
         <span className={`${classes.span} ${error && classes.errorSpan}`}>{error}</span>

@@ -7,6 +7,8 @@ import {AffairsPriorityType, DefaultTasksType} from "../../App";
 import SupperInput from "../common/SuperInput/SupperInput";
 import SupperButton from "../common/SuperButton/SupperButton";
 import EditableSpan from "./Affairs/EditableSpan/EditableSpan";
+import {IconButton} from "@material-ui/core";
+import {Delete} from "@material-ui/icons";
 
 
 export type TodoListType = {
@@ -21,10 +23,13 @@ export type TodoListType = {
     removeTodoList: (todoListID: string) => void
     filter: AffairsPriorityType
     changeTodoListTitle: (newTitle: string, todoListID: string) => void
-    changetodoListTitle: (title: string, todoListID: string) => void
+
 }
 
-const TodoList: React.FC<TodoListType> = ({changetodoListTitle, filter, changeTaskTitle, title, removeTodoList, todoID, tasks, changeTaskStatus, addTask, deleteCallBack, changeFilter}) => {
+const TodoList: React.FC<TodoListType> = ({changeTodoListTitle,  filter,
+                                              changeTaskTitle, title,
+                                              removeTodoList, todoID, tasks,
+                                              changeTaskStatus, addTask, deleteCallBack, changeFilter}) => {
 
     const addItem = (title: string) => {
         addTask(title, todoID)
@@ -36,18 +41,20 @@ const TodoList: React.FC<TodoListType> = ({changetodoListTitle, filter, changeTa
         removeTodoList(todoID)
     }
     const changeTodoListTitleCallback = (title: string) => {
-        changetodoListTitle(title, todoID)
+        changeTodoListTitle(title, todoID)
     }
 
     return <div className={classes.todoWrapper}>
         <div className={classes.title}>
            <div className={classes.span}>
                <EditableSpan
-
+                    bold
                    changeValue={changeTodoListTitleCallback}
                    title={title}/>
            </div>
-            <SupperButton onClick={removeTodoCallback}>X</SupperButton>
+            <IconButton>
+                <Delete onClick={removeTodoCallback}/>
+            </IconButton>
         </div>
 
         <div className={classes.input}>

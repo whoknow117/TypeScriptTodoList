@@ -2,6 +2,7 @@ import React from 'react';
 import classes from './TodoButtons.module.scss';
 import {AffairsPriorityType, DefaultTasksType} from "../../../App";
 import SupperButton from "../../common/SuperButton/SupperButton";
+import {Button} from "@material-ui/core";
 
 
 
@@ -21,9 +22,18 @@ const TodoButtons:React.FC<TodoButtonsType> = ({filter, todoID, changeFilter}) =
 
     return <div className={classes.todoWrapper}>
 
-        <SupperButton filter={filter === 'all'} onClick={setAll}>all</SupperButton>
-        <SupperButton filter={filter === 'complete'} onClick={setComplete}>complete</SupperButton>
-        <SupperButton filter={filter === 'active'} onClick={setActive}>active</SupperButton>
+        <Button
+            color={filter === 'all' ? "secondary" : "primary"}
+            variant={"contained"}
+            onClick={setAll}>all</Button>
+        <Button
+            color={filter === 'complete' ? "secondary" : "primary"}
+            variant={"contained"}
+            onClick={setComplete}>complete</Button>
+        <Button
+            color={filter === 'active' ? "secondary" : "primary"}
+            variant={"contained"}
+            onClick={setActive}>active</Button>
 
 
     </div>

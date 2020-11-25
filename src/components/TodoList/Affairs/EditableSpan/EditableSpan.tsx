@@ -9,12 +9,12 @@ export type EditableSpanType = {
     title: string
     changeValue: (newValue: string) => void
     modeOn?: boolean
-
+    bold?: boolean
 
 
 }
 
-const EditableSpan:React.FC<EditableSpanType>= ({ modeOn, changeValue, title}) => {
+const EditableSpan:React.FC<EditableSpanType>= ({bold, modeOn, changeValue, title}) => {
     const [editMode, setEditMode] = useState<boolean>(false)
     const [titleValue, setTitleValue] =useState<string>(title);
 
@@ -49,7 +49,7 @@ const EditableSpan:React.FC<EditableSpanType>= ({ modeOn, changeValue, title}) =
                                 onKeyPress={deactivateEditM }
                                 onBlur={deActivatedEditMode}
                                 autoFocus={true} type="text"/> :
-                <span className={`${classes.common}`} onDoubleClick={activatedEditMode}>{title}</span>}
+                <span className={`${classes.common} ${ bold ? classes.bold : ""}`} onDoubleClick={activatedEditMode}>{title}</span>}
             {modeOn ? <div className={classes.refactorButton}>
                 <SupperButton onClick={activatedEditMode}/>
                 <CreateIcon/>

@@ -6,6 +6,8 @@ import SupperButton from "../../common/SuperButton/SupperButton";
 import EditableSpan from "./EditableSpan/EditableSpan";
 import DeleteForeverIcon from '@material-ui/icons/DeleteForever';
 import CreateIcon from '@material-ui/icons/Create';
+import {CheckBox, Delete} from '@material-ui/icons';
+import {IconButton, Checkbox} from "@material-ui/core";
 
 
 export type PropsType = {
@@ -35,7 +37,7 @@ const
         return <div className={classes.todoWrapper}>
 
         <span className={classes.checkbox}>
-            <SupperCheckbox checked={task.isDone} onChange={changeStatus}/>
+         <Checkbox checked={task.isDone} onChange={changeStatus}/>
         </span>
             <p className={`${classes.title} ${task.isDone ? classes.done : ""}`}>
                 <EditableSpan
@@ -49,11 +51,9 @@ const
 
             {/*    <CreateIcon/>*/}
             {/*</div>*/}
-            <div className={classes.deleteButton}>
-                <SupperButton red onClick={deleteTask}> </SupperButton>
-
-                <DeleteForeverIcon/>
-            </div>
+            <IconButton   onClick={deleteTask}>
+                <Delete/>
+            </IconButton>
         </div>
     }
 
