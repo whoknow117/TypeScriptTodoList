@@ -3,7 +3,7 @@ import './App.css';
 import TodoList from "./components/TodoList/TodoAffairs";
 import {v1} from "uuid";
 import TodoInput from "./components/TodoList/TodoInput/TodoInput";
-
+// import {todoListsReducer, addTodolistAC} from "./state/todolists-reducer";
 
 export type DefaultTasksType = {
     id: string
@@ -138,7 +138,9 @@ function App() {
                         <div>
 
                             <TodoList
+                                todoLists={todoLists}
                                 todoID={tl.id}
+                                setTodoLists={setTodoLists}
                                 key={tl.id}
                                 title={tl.title}
                                 filter={tl.filter}
@@ -147,8 +149,6 @@ function App() {
                                 deleteCallBack={deleteCallBack}
                                 addTask={addTask}
                                 changeTaskStatus={changeTaskStatus}
-                                removeTodoList={removeTodoList}
-
                                 changeTaskTitle={changeTaskTitle}
                                 changeTodoListTitle={changeTodoListTitle}
                             />
