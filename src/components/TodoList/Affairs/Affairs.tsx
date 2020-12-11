@@ -43,7 +43,7 @@ const
                 <EditableSpan
                     modeOn
                     changeValue={changeTaskTitleCallback}
-                    title={task.name}/>
+                    title={task.title}/>
 
             </p>
             {/*<div className={classes.refactorButton}>*/}

@@ -3,10 +3,10 @@
 
 import {
     addTodolistAC,
-    AddTodolistActionType, changeTodoListFilterAC,
-    ChangeTodolistFilterActionType, changeTodoListTitleAC,
-    ChangeTodolistTitleActionType, removeTodolistAC,
-    RemoveTodolistActionType,
+      changeTodoListFilterAC,
+     changeTodoListTitleAC,
+     removeTodolistAC,
+
     todoListsReducer
 } from './todolists-reducer';
 import {v1} from 'uuid';

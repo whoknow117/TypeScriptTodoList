@@ -7,7 +7,7 @@ import TodoInput from "./components/TodoList/TodoInput/TodoInput";
 
 export type DefaultTasksType = {
     id: string
-    name: string
+    title: string
     isDone: boolean
 }
 export type AffairsPriorityType = "all" | "complete" | "active"
@@ -35,10 +35,10 @@ function App() {
     ])
     const [tasks, setTasks] = useState<TaskStateType>({
         [todoListID1]: [
-            {id: v1(), name: "React", isDone: false},
-            {id: v1(), name: "Html", isDone: false},
-            {id: v1(), name: "Css", isDone: false},
-            {id: v1(), name: "Games", isDone: true},
+            {id: v1(), title: "React", isDone: false},
+            {id: v1(), title: "Html", isDone: false},
+            {id: v1(), title: "Css", isDone: false},
+            {id: v1(), title: "Games", isDone: true},
         ],
 
     })
@@ -59,7 +59,7 @@ function App() {
 
         const task = todoListTasks.find(task => task.id === taskID)
         if (task) {
-            task.name = title
+            task.title = title
             setTasks({...tasks})
         }
 
@@ -76,7 +76,7 @@ function App() {
 
         const newTask: DefaultTasksType = {
             id: v1(),
-            name: title,
+            title: title,
             isDone: false
         }
         tasks[todoListID] = [newTask, ...tasks[todoListID]]
