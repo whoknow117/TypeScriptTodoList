@@ -98,7 +98,7 @@ export const tasksReducer = (state: TaskStateType, action: ActionsType) => {
         }
         case 'ADD-TODOLIST': {
 
-            return {...state,[v1()]: []}
+            return {...state,[action.todoListID]: []}
 
 
         }
@@ -126,9 +126,7 @@ export const ChangeTaskTitleAC = (taskID: string, title: string, todoListID: str
     type: 'CHANGE-TASK-TITLE', taskID, title, todoListID
 })
 
-export const AddTodoListAC = (title: string): AddTodoListActionType => ({
-    type: 'ADD-TODO-LIST', title, todoListID: v1()
-})
+
 
 
 
