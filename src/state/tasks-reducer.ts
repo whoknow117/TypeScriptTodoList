@@ -1,5 +1,6 @@
 import {DefaultTasksType, TaskStateType} from "../App";
 import {v1} from "uuid";
+import {AddTodolistActionType, RemoveTodolistActionType} from "./todolists-reducer";
 
 
 export type RemoveTaskActionType = {
@@ -29,12 +30,21 @@ export type ChangeTaskTitleActionType = {
     todoListID: string
 }
 
+export type AddTodoListActionType = {
+    type: "ADD-TODO-LIST"
+    title: string
+    todoListID: string
+}
+
 
 export type ActionsType =
     RemoveTaskActionType
     | AddTaskActionType
     | ChangeTaskStatusActionType
     | ChangeTaskTitleActionType
+    | RemoveTodolistActionType
+    | AddTodoListActionType
+    | AddTodolistActionType
 
 
 export const tasksReducer = (state: TaskStateType, action: ActionsType) => {
@@ -70,13 +80,27 @@ export const tasksReducer = (state: TaskStateType, action: ActionsType) => {
             }
         }
         case 'CHANGE-TASK-TITLE': {
-            return  {
+            return {
                 ...state, [action.todoListID]: state[action.todoListID].map
-                ( t => {
-                    if(t.id !== action.taskID) return t
-                    else return  {...t, title: action.title}
+                (t => {
+                    if (t.id !== action.taskID) return t
+                    else return {...t, title: action.title}
                 })
             }
+        }
+
+        case 'REMOVE-TODOLIST': {
+            let copyState = {...state}
+            delete copyState[action.id]
+            return copyState
+
+
+        }
+        case 'ADD-TODOLIST': {
+
+            return {...state,[v1()]: []}
+
+
         }
 
         default:
@@ -101,4 +125,10 @@ export const ChangeTaskStatusAC = (taskID: string, isDone: boolean, todoListID: 
 export const ChangeTaskTitleAC = (taskID: string, title: string, todoListID: string): ChangeTaskTitleActionType => ({
     type: 'CHANGE-TASK-TITLE', taskID, title, todoListID
 })
+
+export const AddTodoListAC = (title: string): AddTodoListActionType => ({
+    type: 'ADD-TODO-LIST', title, todoListID: v1()
+})
+
+
 
