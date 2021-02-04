@@ -1,11 +1,9 @@
 import React, {ChangeEvent} from 'react';
 import classes from './Affairs.module.scss';
-import {AffairsPriorityType, DefaultTasksType} from "../../../App";
-import SupperCheckbox from "../../common/SuperCheckbox/SupperCheckbox";
-import SupperButton from "../../common/SuperButton/SupperButton";
+import {AffairsPriorityType, DefaultTasksType} from "../../../types/types";
+
 import EditableSpan from "./EditableSpan/EditableSpan";
-import DeleteForeverIcon from '@material-ui/icons/DeleteForever';
-import CreateIcon from '@material-ui/icons/Create';
+
 import {CheckBox, Delete} from '@material-ui/icons';
 import {IconButton, Checkbox} from "@material-ui/core";
 
@@ -46,11 +44,7 @@ const
                     title={task.title}/>
 
             </p>
-            {/*<div className={classes.refactorButton}>*/}
-            {/*    <SupperButton red onClick={deleteTask}> </SupperButton>*/}
 
-            {/*    <CreateIcon/>*/}
-            {/*</div>*/}
             <IconButton   onClick={deleteTask}>
                 <Delete/>
             </IconButton>

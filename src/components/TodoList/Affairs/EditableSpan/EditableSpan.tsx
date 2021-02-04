@@ -3,7 +3,7 @@ import  classes from './EditablSpan.module.scss';
 import SupperButton from "../../../common/SuperButton/SupperButton";
 import CreateIcon from "@material-ui/icons/Create";
 import DeleteForeverIcon from "@material-ui/icons/DeleteForever";
-import {DefaultTasksType} from "../../../../App";
+import {DefaultTasksType} from "../../../../AppWithReducers";
 
 export type EditableSpanType = {
     title: string

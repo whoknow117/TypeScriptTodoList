@@ -1,15 +1,14 @@
-import React, {ChangeEvent, useState} from 'react';
+import React  from 'react';
 import classes from './TodoAffairs.module.scss';
 import TodoInput from "./TodoInput/TodoInput";
 import Affairs from "./Affairs/Affairs";
 import TodoButtons from "./TodoButtons/TodoButtons";
-import {AffairsPriorityType, DefaultTasksType, TaskStateType, TodoListType} from "../../App";
-import SupperInput from "../common/SuperInput/SupperInput";
-import SupperButton from "../common/SuperButton/SupperButton";
+import {AffairsPriorityType, DefaultTasksType, TaskStateType, TodoListType} from '../../types/types'
+
 import EditableSpan from "./Affairs/EditableSpan/EditableSpan";
 import {IconButton} from "@material-ui/core";
 import {Delete} from "@material-ui/icons";
-import {todoListsReducer, removeTodolistAC} from "../../state/todolists-reducer";
+
 
 
 export type TodoListPropsType = {
@@ -24,11 +23,11 @@ export type TodoListPropsType = {
     todoLists:Array<TodoListType>
     filter: AffairsPriorityType
     changeTodoListTitle: (newTitle: string, todoListID: string) => void
-    setTodoLists:(todoLists: Array<TodoListType>) => void
+    removeTodoList:(todoListID: string) => void
 
 }
 
-const TodoList: React.FC<TodoListPropsType> = ({setTodoLists, todoLists,changeTodoListTitle,  filter,
+const TodoList: React.FC<TodoListPropsType> = ({removeTodoList, todoLists,changeTodoListTitle,  filter,
                                               changeTaskTitle, title,
                                              todoID, tasks,
                                               changeTaskStatus, addTask, deleteCallBack, changeFilter}) => {
@@ -40,7 +39,7 @@ const TodoList: React.FC<TodoListPropsType> = ({setTodoLists, todoLists,changeTo
     // let doneTasks = tasks.filter(t => t.isDone === true);
 
     const removeTodoCallback = () => {
-        setTodoLists(todoListsReducer(todoLists,removeTodolistAC(todoID)))
+        removeTodoList(todoID)
     }
     const changeTodoListTitleCallback = (title: string) => {
         changeTodoListTitle(title, todoID)

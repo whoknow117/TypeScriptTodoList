@@ -1,36 +1,23 @@
-import {AffairsPriorityType, TodoListType} from "../App";
+import {AffairsPriorityType, TodoListType} from "../types/types";
 import {v1} from "uuid";
-
-
-export type RemoveTodolistActionType = {
-    type: "REMOVE-TODOLIST",
-    id: string
-}
-export type AddTodolistActionType = {
-    type: "ADD-TODOLIST",
-    title: string
-    todoListID: string
-}
-export type ChangeTodolistTitleActionType = {
-    type: "CHANGE-TODOLIST-TITLE",
-    title: string
-    id: string
-}
-export type ChangeTodolistFilterActionType = {
-    type: "CHANGE-TODOLIST-FILTER",
-    filter: AffairsPriorityType
-    id: string
-}
-
-
-export type ActionsType =
+import {
+    ActionsType,
+    AddTodolistActionType, ChangeTodolistFilterActionType,
+    ChangeTodolistTitleActionType,
     RemoveTodolistActionType
-    | ChangeTodolistFilterActionType
-    | ChangeTodolistTitleActionType
-    | AddTodolistActionType
+} from "../types/types";
 
 
-export const todoListsReducer = (state: Array<TodoListType>, action: ActionsType) => {
+
+
+
+
+const InitialState: Array<TodoListType> = [
+
+]
+
+
+export const todoListsReducer = (state = InitialState, action: ActionsType) => {
     switch (action.type) {
         case 'REMOVE-TODOLIST':
 
@@ -59,7 +46,7 @@ export const todoListsReducer = (state: Array<TodoListType>, action: ActionsType
             }
             return state;
         default:
-            throw new Error("I don't understand this type")
+            return state;
     }
 }
 

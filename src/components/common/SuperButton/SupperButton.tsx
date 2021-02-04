@@ -1,6 +1,6 @@
 import React, {ButtonHTMLAttributes, DetailedHTMLProps} from 'react';
 import classes from './SupperButton.module.scss';
-import {AffairsPriorityType} from "../../../App";
+import {AffairsPriorityType} from "../../../AppWithReducers";
 
 
 type DefaultButtonPropsType =  DetailedHTMLProps<ButtonHTMLAttributes<HTMLButtonElement>, HTMLButtonElement>

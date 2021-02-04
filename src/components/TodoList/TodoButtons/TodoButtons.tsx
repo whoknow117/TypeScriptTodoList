@@ -1,6 +1,6 @@
 import React from 'react';
 import classes from './TodoButtons.module.scss';
-import {AffairsPriorityType, DefaultTasksType} from "../../../App";
+import {AffairsPriorityType, DefaultTasksType} from "../../../AppWithReducers";
 import SupperButton from "../../common/SuperButton/SupperButton";
 import {Button} from "@material-ui/core";
 

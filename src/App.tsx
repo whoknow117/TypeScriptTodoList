@@ -119,43 +119,43 @@ function App() {
     return (
 
         <div className="App">
-            <div className='createTodo'>
-                <TodoInput addItem={addTodoList}>addTodo</TodoInput>
-            </div>
-            <div className="todoLists">
-                {todoLists.map(tl => {
+            {/*<div className='createTodo'>*/}
+            {/*    <TodoInput addItem={addTodoList}>addTodo</TodoInput>*/}
+            {/*</div>*/}
+            {/*<div className="todoLists">*/}
+            {/*    {todoLists.map(tl => {*/}
 
-                    let todoListTasks = tasks[tl.id]
-                    if (tl.filter === "complete") {
-                        todoListTasks = tasks[tl.id].filter(task => task.isDone === true)
-                    }
-                    if (tl.filter === "active") {
-                        todoListTasks = tasks[tl.id].filter(task => task.isDone === false)
-                    }
+            {/*        let todoListTasks = tasks[tl.id]*/}
+            {/*        if (tl.filter === "complete") {*/}
+            {/*            todoListTasks = tasks[tl.id].filter(task => task.isDone === true)*/}
+            {/*        }*/}
+            {/*        if (tl.filter === "active") {*/}
+            {/*            todoListTasks = tasks[tl.id].filter(task => task.isDone === false)*/}
+            {/*        }*/}
 
 
-                    return (
-                        <div>
+            {/*        return (*/}
+            {/*            <div>*/}
 
-                            <TodoList
-                                todoLists={todoLists}
-                                todoID={tl.id}
-                                setTodoLists={setTodoLists}
-                                key={tl.id}
-                                title={tl.title}
-                                filter={tl.filter}
-                                tasks={todoListTasks}
-                                changeFilter={changeFilter}
-                                deleteCallBack={deleteCallBack}
-                                addTask={addTask}
-                                changeTaskStatus={changeTaskStatus}
-                                changeTaskTitle={changeTaskTitle}
-                                changeTodoListTitle={changeTodoListTitle}
-                            />
-                        </div>
-                    )
-                })}
-            </div>
+            {/*                <TodoList*/}
+            {/*                    todoLists={todoLists}*/}
+            {/*                    todoID={tl.id}*/}
+            {/*                    setTodoLists={setTodoLists}*/}
+            {/*                    key={tl.id}*/}
+            {/*                    title={tl.title}*/}
+            {/*                    filter={tl.filter}*/}
+            {/*                    tasks={todoListTasks}*/}
+            {/*                    changeFilter={changeFilter}*/}
+            {/*                    deleteCallBack={deleteCallBack}*/}
+            {/*                    addTask={addTask}*/}
+            {/*                    changeTaskStatus={changeTaskStatus}*/}
+            {/*                    changeTaskTitle={changeTaskTitle}*/}
+            {/*                    changeTodoListTitle={changeTodoListTitle}*/}
+            {/*                />*/}
+            {/*            </div>*/}
+            {/*        )*/}
+            {/*    })}*/}
+            {/*</div>*/}
 
         </div>
     );
