@@ -69,7 +69,7 @@ export const tasksReducer = (state = InitialState, action: ActionsType) => {
 
 
         }
-        case 'ADD-TODOLIST': {
+        case 'ADD-TODO-LIST': {
 
             return {...state,[action.todoListID]: []}
 
