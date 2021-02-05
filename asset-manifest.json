@@ -1,20 +1,20 @@
 {
   "files": {
     "main.css": "/TypeScriptTodoList/static/css/main.4bdaebc3.chunk.css",
-    "main.js": "/TypeScriptTodoList/static/js/main.e4648afd.chunk.js",
-    "main.js.map": "/TypeScriptTodoList/static/js/main.e4648afd.chunk.js.map",
+    "main.js": "/TypeScriptTodoList/static/js/main.a8d512c7.chunk.js",
+    "main.js.map": "/TypeScriptTodoList/static/js/main.a8d512c7.chunk.js.map",
     "runtime-main.js": "/TypeScriptTodoList/static/js/runtime-main.668b330e.js",
     "runtime-main.js.map": "/TypeScriptTodoList/static/js/runtime-main.668b330e.js.map",
-    "static/js/2.ecb22c04.chunk.js": "/TypeScriptTodoList/static/js/2.ecb22c04.chunk.js",
-    "static/js/2.ecb22c04.chunk.js.map": "/TypeScriptTodoList/static/js/2.ecb22c04.chunk.js.map",
+    "static/js/2.5bfa186a.chunk.js": "/TypeScriptTodoList/static/js/2.5bfa186a.chunk.js",
+    "static/js/2.5bfa186a.chunk.js.map": "/TypeScriptTodoList/static/js/2.5bfa186a.chunk.js.map",
     "index.html": "/TypeScriptTodoList/index.html",
     "static/css/main.4bdaebc3.chunk.css.map": "/TypeScriptTodoList/static/css/main.4bdaebc3.chunk.css.map",
-    "static/js/2.ecb22c04.chunk.js.LICENSE.txt": "/TypeScriptTodoList/static/js/2.ecb22c04.chunk.js.LICENSE.txt"
+    "static/js/2.5bfa186a.chunk.js.LICENSE.txt": "/TypeScriptTodoList/static/js/2.5bfa186a.chunk.js.LICENSE.txt"
   },
   "entrypoints": [
     "static/js/runtime-main.668b330e.js",
-    "static/js/2.ecb22c04.chunk.js",
+    "static/js/2.5bfa186a.chunk.js",
     "static/css/main.4bdaebc3.chunk.css",
-    "static/js/main.e4648afd.chunk.js"
+    "static/js/main.a8d512c7.chunk.js"
   ]
 }
